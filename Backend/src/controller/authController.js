@@ -23,7 +23,11 @@ const registerUser = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
             expiresIn: '7d'
         });
-       res.cookie("token", token)
+  res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,        // required for HTTPS
+  sameSite: "None",    // required for cross-site cookies
+});
 
         res.status(201).json({
             message: 'User is created ',
@@ -58,7 +62,11 @@ const loginUser = async (req, res) => {
         }, process.env.JWT_SECRET, {
             expiresIn: "7d"
         })
-        res.cookie("token", token)
+        res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,        // required for HTTPS
+  sameSite: "None",    // required for cross-site cookies
+});
         res.status(200).json({
             _id: user._id,
             name: user.name,
