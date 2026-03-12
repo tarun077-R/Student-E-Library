@@ -81,15 +81,16 @@ res.cookie("token", token, {
         res.status(500).json({ message: error.message });
     }
 };
-const logoutUser = (req,res)=>{
-   res.cookie("token", "", {
-  httpOnly: true,
-  secure: true,
-  sameSite: "None",
-  path: "/",
-  expires: new Date(0)
-});
-}
+const logoutUser = (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    path: "/"
+  });
+
+  res.status(200).json({ message: "Logged out successfully" });
+};
 const getMe = async (req,res)=>{
     try{
         const user = await userModel.findById(req.user.id).select('-password');
