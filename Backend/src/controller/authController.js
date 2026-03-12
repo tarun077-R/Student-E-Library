@@ -64,7 +64,7 @@ const loginUser = async (req, res) => {
         })
         res.cookie("token", token, {
   httpOnly: true,
-  secure: true,        // required for HTTPS
+  secure: true,   // required for HTTPS
   sameSite: "None",    // required for cross-site cookies
 });
         res.status(200).json({
