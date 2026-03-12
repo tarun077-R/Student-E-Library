@@ -7,15 +7,12 @@ const userRoutes=require("./routes/userRoutes")
 const app= express()
 app.use(express.json())
 app.use(cookieParser());
-const cors = require("cors");
-
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://student-e-library.netlify.app"
-  ],
-  credentials: true
-}));
+    origin:['http://localhost:5173',
+        "https://student-e-library.netlify.app/"],
+
+    credentials:true
+}))
 app.get("/", (req, res) => {
   res.send("Student E-Library API is running 🚀");
 });
