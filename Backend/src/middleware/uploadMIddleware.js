@@ -9,7 +9,8 @@ const storage = new CloudinaryStorage({
             return {
                 folder: 'elibrary/books',
                 resource_type: "raw",
-                format: "pdf"
+                format: "pdf",
+                access_mode:"public"
             };
         } else if (file.fieldname === 'coverImage') {
             return {
