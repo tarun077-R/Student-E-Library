@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const API = axios.create({
-    baseURL: 'http://student-e-library.onrender.com/api',
-    withCredentials: true  // cookies ke liye zaroori hai
+    baseURL: 'https://student-e-library.onrender.com/api',
+    withCredentials: true
 })
 
 // Auth
