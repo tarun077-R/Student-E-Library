@@ -8,32 +8,40 @@ import BookDetails from './pages/BookDetails'
 import Dashboard from './pages/Dashboard'
 import AdminPanel from './pages/AdminPanel'
 import Reader from './pages/Reader'
+import NotFound from './pages/NotFound'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
-   <BrowserRouter>
-<div className="min-h-screen bg-gradient-to-br from-[#0a2a1a] via-[#0a0a0a] to-[#061206]">
+    <BrowserRouter>
+      <div className="min-h-screen bg-gradient-to-br from-[#0a2a1a] via-[#0a0a0a] to-[#061206] flex flex-col">
 
-   <Routes>
-    <Route path="/read/:id" element={<Reader />} />
+        <Routes>
+          {/* Reader pe Navbar + Footer nahi */}
+          <Route path="/read/:id" element={<Reader />} />
+
+          {/* Baaki sab pe Navbar + Footer hai */}
           <Route path="/*" element={
-            <>
-   <Navbar/>
-<Routes>
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <div className="flex-1">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/book/:id" element={<BookDetails />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/admin" element={<AdminPanel />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </div>
+              <Footer />
+            </div>
+          } />
+        </Routes>
 
-    <Route path="/" element={<Home/>}/>
-    <Route path="/login" element={<Login/>}/>
-    <Route path="/register" element={<Register/>}/>
-    <Route path="/book/:id" element={<BookDetails/>}/>
-    <Route path="/dashboard" element={<Dashboard/>}/>
-    <Route path="/admin" element={<AdminPanel/>}/>
-</Routes>
-    </>
-          }/>
-   </Routes>
-   
-   </div>
-   </BrowserRouter>
+      </div>
+    </BrowserRouter>
   )
 }
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getBookById, saveBook } from '../services/api'
 import { useAuth } from '../context/AuthContext'
+import Toast from '../components/Toast'
 
 const BookDetail = () => {
     const { id } = useParams()
@@ -9,8 +10,8 @@ const BookDetail = () => {
     const navigate = useNavigate()
     const [book, setBook] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [message, setMessage] = useState('')
     const [saved, setSaved] = useState(false)
+    const [toast, setToast] = useState(null)
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -29,10 +30,10 @@ const BookDetail = () => {
     const handleSave = async () => {
         try {
             const res = await saveBook(book._id)
-            setMessage(res.data.message)
+            setToast({ message: res.data.message, type: 'success' })
             setSaved(!saved)
         } catch (error) {
-            setMessage('Login karo pehle!')
+            setToast({ message: 'Login karo pehle!', type: 'error' })
         }
     }
 
@@ -50,6 +51,15 @@ const BookDetail = () => {
 
     return (
         <div className="min-h-screen bg-[#1a1d2e] text-white">
+
+            {/* Toast */}
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    onClose={() => setToast(null)}
+                />
+            )}
 
             {/* Back button */}
             <div className="px-10 py-6 border-b border-white/5">
@@ -113,21 +123,14 @@ const BookDetail = () => {
                         {book.description || 'No description available.'}
                     </p>
 
-                    {/* Message */}
-                    {message && (
-                        <div className="bg-white/5 border border-white/10 text-white/60 text-sm px-4 py-3 rounded-lg mb-6">
-                            {message}
-                        </div>
-                    )}
-
                     {/* Buttons */}
                     <div className="flex gap-3">
-                     <button
-    onClick={() => navigate(`/read/${book._id}`)}
-    className="bg-white text-black font-semibold text-sm px-6 py-3 rounded-lg hover:bg-white/90 transition-all cursor-pointer border-none"
->
-    📖 Read Book
-</button>
+                        <button
+                            onClick={() => navigate(`/read/${book._id}`)}
+                            className="bg-white text-black font-semibold text-sm px-6 py-3 rounded-lg hover:bg-white/90 transition-all cursor-pointer border-none"
+                        >
+                            📖 Read Book
+                        </button>
 
                         {user && (
                             <button

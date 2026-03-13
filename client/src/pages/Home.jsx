@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getAllBooks } from '../services/api'
 import BookCard from '../components/BookCard'
+import BookSkeleton from '../components/BookSelection'
 
 const categories = ['All', 'Fiction', 'Novel', 'Science Fiction', 'Fantasy', 'Non-fiction', 'Mystery', 'Thriller', 'Computer Science', 'Mathematics', 'Physics', 'Web', 'Other']
 
@@ -74,10 +75,12 @@ const Home = () => {
                         {search ? 'Search Results' : 'Most Popular'}
                     </h2>
                     {loading ? (
-                        <div className="flex items-center justify-center py-20">
-                            <div className="w-6 h-6 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                        </div>
-                    ) : books.length === 0 ? (
+    <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
+        {[...Array(14)].map((_, i) => (
+            <BookSkeleton key={i} />
+        ))}
+    </div>
+) : books.length === 0 ? (
                         <p className="text-white/30 text-sm">No books found 😔</p>
                     ) : (
                         <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">

@@ -12,10 +12,13 @@ const Navbar = () => {
         navigate('/login')
     }
 
-    const handleSearch = (e) => {
-        e.preventDefault()
-        if (search.trim()) {
-            navigate(`/?search=${search}`)
+    const handleChange = (e) => {
+        const value = e.target.value
+        setSearch(value)
+        if (value.trim()) {
+            navigate(`/?search=${value}`)
+        } else {
+            navigate('/')
         }
     }
 
@@ -25,9 +28,8 @@ const Navbar = () => {
     }
 
     return (
-      // Yeh line change karo
-<nav className="bg-[#13151f] border-b border-white/5 sticky top-0 z-50">
-    <div className="px-6 h-16 flex items-center justify-between">
+        <nav className="bg-[#13151f] border-b border-white/5 sticky top-0 z-50">
+            <div className="px-6 h-16 flex items-center justify-between">
 
                 {/* Logo */}
                 <Link to="/" className="no-underline">
@@ -37,13 +39,13 @@ const Navbar = () => {
                 </Link>
 
                 {/* Search */}
-                <form onSubmit={handleSearch} className="flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-2 gap-2 w-96">
+                <div className="flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-2 gap-2 w-96">
                     <span className="text-white/30 text-sm">🔍</span>
                     <input
                         type="text"
-                        placeholder="Search"
+                        placeholder="Search books..."
                         value={search}
-                        onChange={(e) => setSearch(e.target.value)}
+                        onChange={handleChange}
                         className="bg-transparent text-white text-sm outline-none placeholder:text-white/30 w-full"
                     />
                     {search && (
@@ -55,7 +57,7 @@ const Navbar = () => {
                             ✕
                         </button>
                     )}
-                </form>
+                </div>
 
                 {/* Right Side */}
                 <div className="flex items-center gap-7">
@@ -77,7 +79,7 @@ const Navbar = () => {
                                 {user.name}
                             </span>
 
-                            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-sm font-bold ">
+                            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-sm font-bold">
                                 {user.name?.charAt(0).toUpperCase()}
                             </div>
 
@@ -95,7 +97,7 @@ const Navbar = () => {
                                 Login
                             </Link>
                             <Link to="/register"
-                                className="text-sm px-4 py-1.5 rounded-lg no-underline  bg-white text-black hover:bg-white/90 transition-all font-semibold">
+                                className="text-sm px-4 py-1.5 rounded-lg no-underline bg-white text-black hover:bg-white/90 transition-all font-semibold">
                                 Register
                             </Link>
                         </>
