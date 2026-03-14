@@ -1,4 +1,3 @@
-// Login.jsx
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate, Link } from 'react-router-dom'
@@ -22,11 +21,24 @@ const Login = () => {
     }
 
     return (
-      <div className="h-[calc(100vh-56px)]  bg-[#1a1d2e] flex items-center justify-center">
-            <div className="w-full max-w-md px-8 py-10 bg-[#13151f] border border-white/5 rounded-xl">
+       // Yeh line change karo
+<div className="min-h-[calc(100vh-64px)] bg-[#1a1d2e] flex items-center justify-center relative overflow-hidden px-4 py-8">
 
-                <div className="mb-8">
-                    <h1 className="text-white text-2xl font-black tracking-tight">
+            {/* Background glow */}
+            <div className="absolute top-20 left-10 md:left-40 w-52 md:w-72 h-52 md:h-72 bg-blue-500/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-10 md:right-40 w-52 md:w-72 h-52 md:h-72 bg-purple-500/10 rounded-full blur-3xl" />
+
+            {/* Glass Card */}
+            <div
+                className="relative w-full max-w-md px-6 md:px-8 py-8 md:py-10 rounded-2xl border border-white/10 z-10"
+                style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
+                }}
+            >
+                <div className="mb-6 md:mb-8">
+                    <h1 className="text-white text-xl md:text-2xl font-black tracking-tight">
                         Welcome back
                     </h1>
                     <p className="text-white/30 text-sm mt-1">

@@ -92,13 +92,7 @@ const AdminPanel = () => {
         <div className="min-h-screen bg-[#1a1d2e] text-white">
 
             {/* Toast */}
-            {toast && (
-                <Toast
-                    message={toast.message}
-                    type={toast.type}
-                    onClose={() => setToast(null)}
-                />
-            )}
+            {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
             {/* Confirm Dialog */}
             {confirmId && (
@@ -113,7 +107,7 @@ const AdminPanel = () => {
             {uploading && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center"
                     style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
-                    <div className="bg-[#13151f] border border-white/10 rounded-2xl px-12 py-10 flex flex-col items-center gap-4">
+                    <div className="bg-[#13151f] border border-white/10 rounded-2xl px-8 md:px-12 py-10 flex flex-col items-center gap-4 mx-4">
                         <div className="relative w-16 h-16">
                             <div className="absolute inset-0 border-2 border-white/5 rounded-full" />
                             <div className="absolute inset-0 border-2 border-t-white border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin" />
@@ -127,9 +121,9 @@ const AdminPanel = () => {
             )}
 
             {/* Header */}
-            <div className="border-b border-white/5 px-10 py-6 flex items-center justify-between">
+            <div className="border-b border-white/5 px-4 md:px-10 py-4 md:py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-white font-black text-2xl tracking-tight">
+                    <h1 className="text-white font-black text-xl md:text-2xl tracking-tight">
                         Admin Panel
                     </h1>
                     <p className="text-white/30 text-sm mt-1">
@@ -138,10 +132,10 @@ const AdminPanel = () => {
                 </div>
 
                 {/* Tabs */}
-                <div className="flex gap-2 bg-white/5 border border-white/10 rounded-lg p-1">
+                <div className="flex gap-2 bg-white/5 border border-white/10 rounded-lg p-1 w-full sm:w-auto">
                     <button
                         onClick={() => setActiveTab('books')}
-                        className={`text-sm px-4 py-2 rounded-md transition-all cursor-pointer border-none ${
+                        className={`flex-1 sm:flex-none text-sm px-4 py-2 rounded-md transition-all cursor-pointer border-none ${
                             activeTab === 'books'
                                 ? 'bg-white text-black font-semibold'
                                 : 'text-white/50 hover:text-white bg-transparent'
@@ -151,7 +145,7 @@ const AdminPanel = () => {
                     </button>
                     <button
                         onClick={() => setActiveTab('add')}
-                        className={`text-sm px-4 py-2 rounded-md transition-all cursor-pointer border-none ${
+                        className={`flex-1 sm:flex-none text-sm px-4 py-2 rounded-md transition-all cursor-pointer border-none ${
                             activeTab === 'add'
                                 ? 'bg-white text-black font-semibold'
                                 : 'text-white/50 hover:text-white bg-transparent'
@@ -162,14 +156,14 @@ const AdminPanel = () => {
                 </div>
             </div>
 
-            <div className="px-10 py-8">
+            <div className="px-4 md:px-10 py-6 md:py-8">
 
                 {/* Add Book Form */}
                 {activeTab === 'add' && (
-                    <div className="flex gap-10 items-start justify-between">
+                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
 
                         {/* Left - Form */}
-                        <form onSubmit={handleAddBook} className="w-[600px] flex flex-col gap-4">
+                        <form onSubmit={handleAddBook} className="w-full lg:max-w-lg flex flex-col gap-4">
                             <h2 className="text-white/40 text-xs font-bold tracking-widest uppercase mb-2">
                                 Add New Book
                             </h2>
@@ -192,7 +186,7 @@ const AdminPanel = () => {
                                 </div>
                             ))}
 
-                            <div className="flex gap-4">
+                            <div className="flex flex-col sm:flex-row gap-4">
                                 <div className="flex flex-col gap-1 flex-1">
                                     <label className="text-white/40 text-xs">PDF File</label>
                                     <input
@@ -222,8 +216,8 @@ const AdminPanel = () => {
                             </button>
                         </form>
 
-                        {/* Right - Preview */}
-                        <div className="w-[290px] bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col items-center sticky top-24 mt-14">
+                        {/* Right - Preview — Desktop only */}
+                        <div className="hidden lg:flex w-[290px] bg-white/5 border border-white/10 rounded-xl p-6 flex-col items-center sticky top-24">
                             <p className="text-white/20 text-xs font-bold tracking-widest uppercase mb-6">
                                 Live Preview
                             </p>
@@ -279,9 +273,9 @@ const AdminPanel = () => {
                         <div className="flex flex-col gap-3">
                             {books.map(book => (
                                 <div key={book._id}
-                                    className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl px-4 py-3 hover:border-white/20 transition-all">
+                                    className="flex items-center gap-3 md:gap-4 bg-white/5 border border-white/10 rounded-xl px-3 md:px-4 py-3 hover:border-white/20 transition-all">
 
-                                    <div className="w-10 h-14 bg-white/5 rounded-md overflow-hidden shrink-0">
+                                    <div className="w-8 md:w-10 h-12 md:h-14 bg-white/5 rounded-md overflow-hidden shrink-0">
                                         {book.coverImage ? (
                                             <img src={book.coverImage} alt={book.title}
                                                 className="w-full h-full object-cover" />
@@ -290,18 +284,18 @@ const AdminPanel = () => {
                                         )}
                                     </div>
 
-                                    <div className="flex-1">
-                                        <h3 className="text-white text-sm font-semibold">{book.title}</h3>
-                                        <p className="text-white/40 text-xs mt-0.5">{book.author}</p>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="text-white text-sm font-semibold truncate">{book.title}</h3>
+                                        <p className="text-white/40 text-xs mt-0.5 truncate">{book.author}</p>
                                     </div>
 
-                                    <span className="text-white/30 text-xs bg-white/5 px-3 py-1 rounded-full">
+                                    <span className="hidden sm:block text-white/30 text-xs bg-white/5 px-3 py-1 rounded-full shrink-0">
                                         {book.category}
                                     </span>
 
                                     <button
                                         onClick={() => setConfirmId(book._id)}
-                                        className="text-white/20 text-sm hover:text-red-400 transition-all cursor-pointer bg-transparent border-none"
+                                        className="text-white/20 text-sm hover:text-red-400 transition-all cursor-pointer bg-transparent border-none shrink-0"
                                     >
                                         🗑️
                                     </button>

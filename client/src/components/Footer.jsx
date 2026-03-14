@@ -1,10 +1,10 @@
 const Footer = () => {
     return (
-        <footer className="bg-[#13151f] border-t border-white/5 px-10 py-10 mt-auto">
-            <div className="max-w-full mx-auto">
+        <footer className="bg-[#13151f] border-t border-white/5 px-4 md:px-10 py-8 md:py-10 mt-auto">
+            <div className="max-w-7xl mx-auto">
 
                 {/* Top Section */}
-                <div className="flex items-start justify-between mb-8">
+                <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-8">
 
                     {/* Logo + Description */}
                     <div>
@@ -17,7 +17,7 @@ const Footer = () => {
                     </div>
 
                     {/* Links */}
-                    <div className="flex gap-12">
+                    <div className="flex gap-10 md:gap-12">
                         <div>
                             <p className="text-white/40 text-xs font-bold tracking-widest uppercase mb-3">
                                 Library
@@ -42,8 +42,8 @@ const Footer = () => {
                 </div>
 
                 {/* Divider */}
-                <div className="border-t border-white/5 pt-6 flex items-center justify-between">
-                    <p className="text-white/20 text-xs">
+                <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <p className="text-white/20 text-xs text-center sm:text-left">
                         © 2026 Student E-Library. Made with ❤️ by Tarun Rawat
                     </p>
                     <p className="text-white/20 text-xs">

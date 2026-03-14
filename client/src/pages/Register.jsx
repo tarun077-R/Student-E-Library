@@ -1,4 +1,3 @@
-// Register.jsx
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate, Link } from 'react-router-dom'
@@ -7,7 +6,6 @@ const Register = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [role, setRole] = useState('student')
     const [error, setError] = useState('')
 
     const { registerUser } = useAuth()
@@ -16,7 +14,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await registerUser({ name, email, password, role })
+            await registerUser({ name, email, password })
             navigate('/')
         } catch (err) {
             setError(err.response?.data?.message || 'Something went wrong')
@@ -24,11 +22,24 @@ const Register = () => {
     }
 
     return (
-        <div className="h-[calc(100vh-56px)]  bg-[#1a1d2e] flex items-center justify-center">
-            <div className="w-full max-w-md px-8 py-10 bg-[#13151f] border border-white/5 rounded-xl">
+       // Yeh line change karo
+<div className="min-h-[calc(100vh-64px)] bg-[#1a1d2e] flex items-center justify-center relative overflow-hidden px-4 py-8">
 
-                <div className="mb-8">
-                    <h1 className="text-white text-2xl font-black tracking-tight">
+            {/* Background glow */}
+            <div className="absolute top-20 right-10 md:right-40 w-52 md:w-72 h-52 md:h-72 bg-blue-500/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 left-10 md:left-40 w-52 md:w-72 h-52 md:h-72 bg-purple-500/10 rounded-full blur-3xl" />
+
+            {/* Glass Card */}
+            <div
+                className="relative w-full max-w-md px-6 md:px-8 py-8 md:py-10 rounded-2xl border border-white/10 z-10"
+                style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
+                }}
+            >
+                <div className="mb-6 md:mb-8">
+                    <h1 className="text-white text-xl md:text-2xl font-black tracking-tight">
                         Create account
                     </h1>
                     <p className="text-white/30 text-sm mt-1">
@@ -47,7 +58,7 @@ const Register = () => {
                         <label className="text-white/40 text-xs">Name</label>
                         <input
                             type="text"
-                            placeholder="Tarun Singh"
+                            placeholder="Tarun Rawat"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className="bg-white/5 border border-white/10 text-white text-sm px-4 py-3 rounded-lg outline-none focus:border-white/20 transition-all placeholder:text-white/20"
@@ -74,18 +85,6 @@ const Register = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             className="bg-white/5 border border-white/10 text-white text-sm px-4 py-3 rounded-lg outline-none focus:border-white/20 transition-all placeholder:text-white/20"
                         />
-                    </div>
-
-                    <div className="flex flex-col gap-1">
-                        <label className="text-white/40 text-xs">Role</label>
-                        <select
-                            value={role}
-                            onChange={(e) => setRole(e.target.value)}
-                            className="bg-white/5 border border-white/10 text-white text-sm px-4 py-3 rounded-lg outline-none focus:border-white/20 transition-all cursor-pointer"
-                        >
-                            <option value="student" className="bg-[#13151f]">Student</option>
-                            <option value="admin" className="bg-[#13151f]">Admin</option>
-                        </select>
                     </div>
 
                     <button

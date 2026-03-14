@@ -62,7 +62,7 @@ const BookDetail = () => {
             )}
 
             {/* Back button */}
-            <div className="px-10 py-6 border-b border-white/5">
+            <div className="px-4 md:px-10 py-4 md:py-6 border-b border-white/5">
                 <button
                     onClick={() => navigate('/')}
                     className="text-white/40 text-sm hover:text-white transition-all cursor-pointer bg-transparent border-none flex items-center gap-2"
@@ -71,87 +71,92 @@ const BookDetail = () => {
                 </button>
             </div>
 
-            <div className="max-w-4xl mx-auto px-10 py-12 flex gap-12">
+            {/* Main Content */}
+            <div className="max-w-4xl mx-auto px-4 md:px-10 py-8 md:py-12">
 
-                {/* Cover Image */}
-                <div className="w-[200px] shrink-0">
-                    <div className="aspect-[3/4] bg-[#13151f] rounded-xl overflow-hidden border border-white/5">
-                        {book.coverImage ? (
-                            <img
-                                src={book.coverImage}
-                                alt={book.title}
-                                className="w-full h-full object-cover"
-                            />
-                        ) : (
-                            <div className="w-full h-full flex items-center justify-center text-5xl">
-                                📖
-                            </div>
-                        )}
+                {/* Mobile — Stack layout, Desktop — Side by side */}
+                <div className="flex flex-col md:flex-row gap-6 md:gap-12">
+
+                    {/* Cover Image */}
+                    <div className="flex flex-col items-center md:items-start md:w-[200px] shrink-0">
+                        <div className="w-40 md:w-full aspect-[3/4] bg-[#13151f] rounded-xl overflow-hidden border border-white/5">
+                            {book.coverImage ? (
+                                <img
+                                    src={book.coverImage}
+                                    alt={book.title}
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center text-5xl">
+                                    📖
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Stars */}
+                        <div className="flex gap-1 mt-3 justify-center">
+                            {[1,2,3,4,5].map(star => (
+                                <span key={star} className="text-yellow-400">★</span>
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Stars */}
-                    <div className="flex gap-1 mt-3 justify-center">
-                        {[1,2,3,4,5].map(star => (
-                            <span key={star} className="text-yellow-400">★</span>
-                        ))}
-                    </div>
-                </div>
+                    {/* Details */}
+                    <div className="flex-1">
 
-                {/* Details */}
-                <div className="flex-1">
+                        {/* Category Badge */}
+                        <span className="text-xs text-white/40 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                            {book.category}
+                        </span>
 
-                    {/* Category Badge */}
-                    <span className="text-xs text-white/40 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
-                        {book.category}
-                    </span>
+                        {/* Title */}
+                        <h1 className="text-3xl md:text-4xl font-black tracking-tight mt-4 mb-2">
+                            {book.title}
+                        </h1>
 
-                    {/* Title */}
-                    <h1 className="text-4xl font-black tracking-tight mt-4 mb-2">
-                        {book.title}
-                    </h1>
-
-                    {/* Author */}
-                    <p className="text-white/50 text-sm mb-6">
-                        by <span className="text-white/80">{book.author}</span>
-                    </p>
-
-                    {/* Divider */}
-                    <div className="border-t border-white/5 mb-6" />
-
-                    {/* Description */}
-                    <p className="text-white/40 text-sm leading-relaxed mb-8">
-                        {book.description || 'No description available.'}
-                    </p>
-
-                    {/* Buttons */}
-                    <div className="flex gap-3">
-                        <button
-                            onClick={() => navigate(`/read/${book._id}`)}
-                            className="bg-white text-black font-semibold text-sm px-6 py-3 rounded-lg hover:bg-white/90 transition-all cursor-pointer border-none"
-                        >
-                            📖 Read Book
-                        </button>
-
-                        {user && (
-                            <button
-                                onClick={handleSave}
-                                className={`font-semibold text-sm px-6 py-3 rounded-lg transition-all cursor-pointer border ${
-                                    saved
-                                        ? 'bg-white/10 text-white border-white/20'
-                                        : 'bg-transparent text-white/60 border-white/10 hover:border-white/30 hover:text-white'
-                                }`}
-                            >
-                                {saved ? '✓ Saved' : '📚 Save to Shelf'}
-                            </button>
-                        )}
-                    </div>
-
-                    {/* Uploaded by */}
-                    {book.uploadedBy && (
-                        <p className="text-white/20 text-xs mt-8">
-                            Uploaded by {book.uploadedBy.name}
+                        {/* Author */}
+                        <p className="text-white/50 text-sm mb-6">
+                            by <span className="text-white/80">{book.author}</span>
                         </p>
-                    )}
+
+                        {/* Divider */}
+                        <div className="border-t border-white/5 mb-6" />
+
+                        {/* Description */}
+                        <p className="text-white/40 text-sm leading-relaxed mb-8">
+                            {book.description || 'No description available.'}
+                        </p>
+
+                        {/* Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-3">
+                            <button
+                                onClick={() => navigate(`/read/${book._id}`)}
+                                className="bg-white text-black font-semibold text-sm px-6 py-3 rounded-lg hover:bg-white/90 transition-all cursor-pointer border-none text-center"
+                            >
+                                📖 Read Book
+                            </button>
+
+                            {user && (
+                                <button
+                                    onClick={handleSave}
+                                    className={`font-semibold text-sm px-6 py-3 rounded-lg transition-all cursor-pointer border text-center ${
+                                        saved
+                                            ? 'bg-white/10 text-white border-white/20'
+                                            : 'bg-transparent text-white/60 border-white/10 hover:border-white/30 hover:text-white'
+                                    }`}
+                                >
+                                    {saved ? '✓ Saved' : '📚 Save to Shelf'}
+                                </button>
+                            )}
+                        </div>
+
+                        {/* Uploaded by */}
+                        {book.uploadedBy && (
+                            <p className="text-white/20 text-xs mt-8">
+                                Uploaded by {book.uploadedBy.name}
+                            </p>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
