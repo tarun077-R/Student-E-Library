@@ -1,13 +1,17 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useState } from 'react'
 
 const Navbar = () => {
     const { user, logoutUser } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
     const [search, setSearch] = useState('')
     const [showSearch, setShowSearch] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
+
+    // Landing page pe search hide karo
+    const isLanding = location.pathname === '/'
 
     const handleLogout = async () => {
         await logoutUser()
@@ -19,15 +23,15 @@ const Navbar = () => {
         const value = e.target.value
         setSearch(value)
         if (value.trim()) {
-            navigate(`/?search=${value}`)
+            navigate(`/home?search=${value}`)
         } else {
-            navigate('/')
+            navigate('/home')
         }
     }
 
     const handleClear = () => {
         setSearch('')
-        navigate('/')
+        navigate('/home')
         setShowSearch(false)
     }
 
@@ -42,54 +46,59 @@ const Navbar = () => {
                     </span>
                 </Link>
 
-                {/* Search — Desktop */}
-                <div className="hidden md:flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-2 gap-2 w-96">
-                    <span className="text-white/30 text-sm">🔍</span>
-                    <input
-                        type="text"
-                        placeholder="Search books..."
-                        value={search}
-                        onChange={handleChange}
-                        className="bg-transparent text-white text-sm outline-none placeholder:text-white/30 w-full"
-                    />
-                    {search && (
-                        <button
-                            type="button"
-                            onClick={handleClear}
-                            className="text-white/30 hover:text-white transition-all cursor-pointer bg-transparent border-none text-sm"
-                        >
-                            ✕
-                        </button>
-                    )}
-                </div>
+                {/* Search — Landing pe nahi dikhega */}
+                {!isLanding && (
+                    <>
+                        {/* Desktop Search */}
+                        <div className="hidden md:flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-2 gap-2 w-96">
+                            <span className="text-white/30 text-sm">🔍</span>
+                            <input
+                                type="text"
+                                placeholder="Search books..."
+                                value={search}
+                                onChange={handleChange}
+                                className="bg-transparent text-white text-sm outline-none placeholder:text-white/30 w-full"
+                            />
+                            {search && (
+                                <button
+                                    type="button"
+                                    onClick={handleClear}
+                                    className="text-white/30 hover:text-white transition-all cursor-pointer bg-transparent border-none text-sm"
+                                >
+                                    ✕
+                                </button>
+                            )}
+                        </div>
 
-                {/* Mobile Search Expanded */}
-                {showSearch && (
-                    <div className="md:hidden flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-2 gap-2 flex-1">
-                        <span className="text-white/30 text-sm">🔍</span>
-                        <input
-                            type="text"
-                            placeholder="Search books..."
-                            value={search}
-                            onChange={handleChange}
-                            autoFocus
-                            className="bg-transparent text-white text-sm outline-none placeholder:text-white/30 w-full"
-                        />
-                        <button
-                            type="button"
-                            onClick={handleClear}
-                            className="text-white/30 hover:text-white transition-all cursor-pointer bg-transparent border-none text-sm"
-                        >
-                            ✕
-                        </button>
-                    </div>
+                        {/* Mobile Search Expanded */}
+                        {showSearch && (
+                            <div className="md:hidden flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-2 gap-2 flex-1">
+                                <span className="text-white/30 text-sm">🔍</span>
+                                <input
+                                    type="text"
+                                    placeholder="Search books..."
+                                    value={search}
+                                    onChange={handleChange}
+                                    autoFocus
+                                    className="bg-transparent text-white text-sm outline-none placeholder:text-white/30 w-full"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={handleClear}
+                                    className="text-white/30 hover:text-white transition-all cursor-pointer bg-transparent border-none text-sm"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+                        )}
+                    </>
                 )}
 
                 {/* Right Side */}
                 <div className="flex items-center gap-2 md:gap-7 shrink-0">
 
-                    {/* Mobile Search Icon */}
-                    {!showSearch && (
+                    {/* Mobile Search Icon — Landing pe nahi */}
+                    {!isLanding && !showSearch && (
                         <button
                             onClick={() => setShowSearch(true)}
                             className="md:hidden text-white/50 hover:text-white bg-transparent border-none cursor-pointer text-lg"
@@ -98,7 +107,6 @@ const Navbar = () => {
                         </button>
                     )}
 
-                    {/* Desktop Links */}
                     {user ? (
                         <>
                             <Link to="/dashboard"
@@ -115,14 +123,12 @@ const Navbar = () => {
                                 {user.name}
                             </span>
 
-                            {/* Avatar — Mobile Menu Trigger */}
                             <div
                                 onClick={() => setShowMenu(!showMenu)}
                                 className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-sm font-bold cursor-pointer relative"
                             >
                                 {user.name?.charAt(0).toUpperCase()}
 
-                                {/* Mobile Dropdown */}
                                 {showMenu && (
                                     <div className="absolute top-10 right-0 bg-[#13151f] border border-white/10 rounded-xl py-2 w-44 shadow-2xl md:hidden">
                                         <Link to="/dashboard"

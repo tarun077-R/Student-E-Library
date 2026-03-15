@@ -10,13 +10,14 @@ import AdminPanel from './pages/AdminPanel'
 import Reader from './pages/Reader'
 import NotFound from './pages/NotFound'
 import Footer from './components/Footer'
+import Landing from './pages/Landing'
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gradient-to-br from-[#0a2a1a] via-[#0a0a0a] to-[#061206] flex flex-col">
-
         <Routes>
+
           {/* Reader pe Navbar + Footer nahi */}
           <Route path="/read/:id" element={<Reader />} />
 
@@ -26,7 +27,8 @@ const App = () => {
               <Navbar />
               <div className="flex-1">
                 <Routes>
-                  <Route path="/" element={<Home />} />
+                  <Route path="/" element={<Landing />} />
+                  <Route path="/home" element={<Home />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/book/:id" element={<BookDetails />} />
@@ -38,8 +40,8 @@ const App = () => {
               <Footer />
             </div>
           } />
-        </Routes>
 
+        </Routes>
       </div>
     </BrowserRouter>
   )

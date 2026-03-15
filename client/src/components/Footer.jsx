@@ -23,7 +23,7 @@ const Footer = () => {
                                 Library
                             </p>
                             <div className="flex flex-col gap-2">
-                                <a href="/" className="text-white/30 text-xs hover:text-white transition-all no-underline">Browse Books</a>
+                                <a href="/home" className="text-white/30 text-xs hover:text-white transition-all no-underline">Browse Books</a>
                                 <a href="/dashboard" className="text-white/30 text-xs hover:text-white transition-all no-underline">My Shelf</a>
                                 <a href="/register" className="text-white/30 text-xs hover:text-white transition-all no-underline">Register</a>
                             </div>
