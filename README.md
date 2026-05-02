@@ -1,4 +1,4 @@
-# 📚 Student E-Library
+# 📚 Book Reading & Management Platform
 
 A full-stack MERN web application where students can browse, read, and manage books online.
 
