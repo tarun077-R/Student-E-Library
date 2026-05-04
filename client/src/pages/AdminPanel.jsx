@@ -160,7 +160,7 @@ const AdminPanel = () => {
 
                 {/* Add Book Form */}
                 {activeTab === 'add' && (
-                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
+                   <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-12 xl:gap-24 items-start">
 
                         {/* Left - Form */}
                         <form onSubmit={handleAddBook} className="w-full lg:max-w-lg flex flex-col gap-4">
@@ -186,7 +186,7 @@ const AdminPanel = () => {
                                 </div>
                             ))}
 
-                            <div className="flex flex-col sm:flex-row gap-4">
+                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                                 <div className="flex flex-col gap-1 flex-1">
                                     <label className="text-white/40 text-xs">PDF File</label>
                                     <input
