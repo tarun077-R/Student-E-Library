@@ -197,3 +197,4 @@ Using `jose`:
 - Existing MongoDB data remains 100% compatible.
 - The `User` model automatically maps existing `savedBooks` IDs to `shelf` items with status `'saved'` if `shelf` is empty.
 - Root repository replaced cleanly with Next.js 14+ TypeScript App Router.
+

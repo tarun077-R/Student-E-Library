@@ -527,3 +527,4 @@ Execute `npm run build` to verify zero TypeScript errors, valid route generation
 - [ ] **Step 4: Update `README.md` and commit**
 Document architecture, environment variables, and scripts.
 Commit: `git commit -m "docs: update README with Next.js 14 architecture and setup guide"`
+
