@@ -43,13 +43,13 @@ function LoginForm() {
 
   return (
     <div className="min-h-[calc(100vh-120px)] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md p-8 sm:p-10 rounded-3xl glass-panel shadow-glow-sm relative">
+      <div className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#131926] border border-[#1e2638] shadow-2xl relative">
         {/* Glow decoration behind card */}
-        <div className="absolute -top-12 -left-12 w-36 h-36 bg-indigo-600/20 blur-3xl pointer-events-none rounded-full" />
-        <div className="absolute -bottom-12 -right-12 w-36 h-36 bg-cyan-600/20 blur-3xl pointer-events-none rounded-full" />
+        <div className="absolute -top-12 -left-12 w-36 h-36 bg-blue-600/10 blur-3xl pointer-events-none rounded-full" />
+        <div className="absolute -bottom-12 -right-12 w-36 h-36 bg-cyan-600/10 blur-3xl pointer-events-none rounded-full" />
 
         <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mx-auto mb-3 shadow-glow-sm">
+          <div className="w-12 h-12 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 mx-auto mb-3 shadow-glow-sm">
             <BookOpen className="w-6 h-6" />
           </div>
           <h1 className="text-2xl font-black text-white tracking-tight">Welcome Back</h1>
@@ -76,7 +76,7 @@ function LoginForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="student@example.com"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0e131f] border border-[#1e2638] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
           </div>
@@ -91,7 +91,7 @@ function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#0e131f] border border-[#1e2638] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
           </div>
@@ -99,7 +99,7 @@ function LoginForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-2 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-bold text-sm shadow-glow-sm hover:shadow-glow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full mt-2 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50"
           >
             {loading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -116,7 +116,7 @@ function LoginForm() {
           Don&apos;t have an account yet?{' '}
           <Link
             href={`/register?redirect=${encodeURIComponent(redirectTarget)}`}
-            className="text-indigo-400 font-semibold hover:underline"
+            className="text-blue-400 font-semibold hover:underline"
           >
             Create an account
           </Link>

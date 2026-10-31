@@ -51,15 +51,15 @@ export function BookTable({ books, onRefresh }: BookTableProps) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Filter catalog books..."
-          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#131926] border border-[#1e2638] text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
         />
       </div>
 
       {/* Table Container */}
-      <div className="rounded-3xl glass-panel border border-slate-800 overflow-hidden shadow-sm">
+      <div className="rounded-2xl bg-[#131926] border border-[#1e2638] overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-900/80 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider text-[10px]">
+            <thead className="bg-[#0e131f] border-b border-[#1e2638] text-slate-400 font-semibold uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="px-5 py-3.5">Cover</th>
                 <th className="px-5 py-3.5">Title & Author</th>
@@ -68,12 +68,12 @@ export function BookTable({ books, onRefresh }: BookTableProps) {
                 <th className="px-5 py-3.5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-300">
+            <tbody className="divide-y divide-[#1e2638]/70 text-slate-300">
               {filteredBooks.map((book) => (
-                <tr key={book._id} className="hover:bg-slate-900/40 transition-colors">
+                <tr key={book._id} className="hover:bg-[#1a2234]/50 transition-colors">
                   {/* Cover Thumbnail */}
                   <td className="px-5 py-3">
-                    <div className="w-9 h-12 rounded-lg bg-slate-800 overflow-hidden shrink-0">
+                    <div className="w-9 h-12 rounded-lg bg-[#0e131f] border border-[#1e2638] overflow-hidden shrink-0">
                       {book.coverImage ? (
                         <img
                           src={book.coverImage}
@@ -96,7 +96,7 @@ export function BookTable({ books, onRefresh }: BookTableProps) {
 
                   {/* Category */}
                   <td className="px-5 py-3">
-                    <span className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-medium text-indigo-300">
+                    <span className="px-2.5 py-1 rounded-md bg-[#0e131f] border border-[#1e2638] text-[11px] font-medium text-blue-300">
                       {book.category}
                     </span>
                   </td>
@@ -115,7 +115,7 @@ export function BookTable({ books, onRefresh }: BookTableProps) {
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/books/${book._id}`}
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#1e2638] transition-colors"
                         title="View details"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />

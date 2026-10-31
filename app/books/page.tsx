@@ -7,10 +7,12 @@ import { IBook } from '@/types';
 import { BookOpen } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Catalog | Browse All Books',
+  title: 'Browse Catalog | Library',
   description:
     'Browse our comprehensive catalog of student textbooks, computer science guides, fiction, and research publications.',
 };
+
+export const dynamic = 'force-dynamic';
 
 interface BooksPageProps {
   searchParams: {
@@ -48,59 +50,37 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
   const books = await getBooks(category, search);
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-      {/* Header section */}
-      <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
-        <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-          Library <span className="text-gradient">Catalog</span>
-        </h1>
-        <p className="text-sm text-slate-400">
-          Search and explore books across all disciplines. Click on any title to read or add to your personal shelf.
-        </p>
-      </div>
-
-      {/* Real-time Search and Category Quick Pills */}
-      <BookFilters />
-
-      {/* Results Header */}
-      <div className="flex items-center justify-between mb-6 pb-3 border-b border-slate-800/80 text-xs text-slate-400">
-        <div>
-          Showing <span className="font-bold text-white">{books.length}</span>{' '}
-          {books.length === 1 ? 'book' : 'books'}
-          {category !== 'All' && (
-            <span>
-              {' '}
-              in <span className="text-indigo-400 font-semibold">{category}</span>
-            </span>
-          )}
-          {search && (
-            <span>
-              {' '}
-              matching &quot;<span className="text-white font-semibold">{search}</span>&quot;
-            </span>
-          )}
+    <div className="p-6 sm:p-8 space-y-8 max-w-[1600px] mx-auto w-full">
+      {/* Header and Filter Pills */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between pb-2 border-b border-[#1e2638]">
+          <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            Browse Catalog
+          </h1>
+          <span className="text-xs text-slate-400 font-medium">
+            Showing <strong className="text-white">{books.length}</strong> titles
+          </span>
         </div>
+
+        <BookFilters />
       </div>
 
-      {/* Book Grid */}
+      {/* Book Grid (Matching Screenshot 1 & 3 density) */}
       {books.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 sm:gap-5">
           {books.map((book) => (
             <BookCard key={book._id} book={book} />
           ))}
         </div>
       ) : (
-        <div className="py-20 flex flex-col items-center justify-center text-center glass-panel rounded-2xl border border-slate-800/80 p-8">
-          <div className="w-16 h-16 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">
-            <BookOpen className="w-8 h-8" />
-          </div>
-          <h3 className="text-lg font-bold text-white mb-1">No books matched your criteria</h3>
-          <p className="text-xs text-slate-400 max-w-sm mb-4">
-            We couldn&apos;t find any books matching your search or category filter. Try clearing filters or searching for another keyword.
+        <div className="py-24 flex flex-col items-center justify-center text-center p-8 rounded-2xl bg-[#131926] border border-[#1e2638]">
+          <BookOpen className="w-12 h-12 text-slate-600 mb-3" />
+          <h3 className="text-base font-bold text-white mb-1">No books found</h3>
+          <p className="text-xs text-slate-400 max-w-sm">
+            Try adjusting your search query or selecting a different genre above.
           </p>
         </div>
       )}
     </div>
   );
 }
-

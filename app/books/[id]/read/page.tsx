@@ -5,7 +5,7 @@ import { connectToDatabase } from '@/lib/db';
 import { Book } from '@/lib/models/Book';
 import { User } from '@/lib/models/User';
 import { verifyToken } from '@/lib/auth';
-import { PDFReaderViewer } from '@/components/pdf-reader/viewer';
+import { ReaderDesktopView } from '@/components/pdf-reader/reader-desktop-view';
 import { IBook } from '@/types';
 
 interface ReaderPageProps {
@@ -17,9 +17,9 @@ interface ReaderPageProps {
 export async function generateMetadata({ params }: ReaderPageProps): Promise<Metadata> {
   await connectToDatabase();
   const book = await Book.findById(params.id).select('title author').lean();
-  if (!book) return { title: 'Reader | Student E-Library' };
+  if (!book) return { title: 'Reader | Library' };
   return {
-    title: `Reading: ${book.title} - ${book.author} | Student E-Library`,
+    title: `${book.title} by PDF Reader | Library`,
   };
 }
 
@@ -34,7 +34,7 @@ export default async function ReaderPage({ params }: ReaderPageProps) {
   const book: IBook = JSON.parse(JSON.stringify(bookDoc));
 
   // Determine user's last saved reading page if logged in
-  let initialPage = 1;
+  let initialPage = 45;
   const token = cookies().get('token')?.value;
   if (token) {
     const payload = verifyToken(token);
@@ -51,6 +51,5 @@ export default async function ReaderPage({ params }: ReaderPageProps) {
     }
   }
 
-  return <PDFReaderViewer book={book} initialPage={initialPage} />;
+  return <ReaderDesktopView book={book} initialPage={initialPage} />;
 }
-

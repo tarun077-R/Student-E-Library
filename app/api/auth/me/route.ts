@@ -3,6 +3,8 @@ import { connectToDatabase } from '@/lib/db';
 import { User } from '@/lib/models/User';
 import { verifyToken } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const token = request.cookies.get('token')?.value;

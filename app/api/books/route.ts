@@ -3,6 +3,8 @@ import { connectToDatabase } from '@/lib/db';
 import { Book } from '@/lib/models/Book';
 import { verifyToken } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     await connectToDatabase();

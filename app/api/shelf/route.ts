@@ -4,6 +4,8 @@ import { User } from '@/lib/models/User';
 import { Book } from '@/lib/models/Book';
 import { verifyToken } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const token = request.cookies.get('token')?.value;

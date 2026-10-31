@@ -149,7 +149,7 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Clean Architecture"
-              className="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800 text-sm text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-4 py-3 rounded-xl bg-[#131926] border border-[#1e2638] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -161,7 +161,7 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
               placeholder="e.g. Robert C. Martin"
-              className="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800 text-sm text-white focus:outline-none focus:border-indigo-500"
+              className="w-full px-4 py-3 rounded-xl bg-[#131926] border border-[#1e2638] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
             />
           </div>
         </div>
@@ -177,8 +177,8 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
                 onClick={() => setCategory(cat)}
                 className={`py-2 px-3 rounded-xl text-xs font-semibold text-left transition-all border ${
                   category === cat
-                    ? 'bg-indigo-600 text-white border-indigo-500 shadow-sm'
-                    : 'bg-slate-900/60 text-slate-400 border-slate-800 hover:text-white'
+                    ? 'bg-blue-600 text-white border-blue-500 shadow-sm'
+                    : 'bg-[#131926] text-slate-400 border-[#1e2638] hover:text-white hover:border-[#2a3750]'
                 }`}
               >
                 {cat}
@@ -192,7 +192,7 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
               value={customCategory}
               onChange={(e) => setCustomCategory(e.target.value)}
               placeholder="Enter custom category name..."
-              className="w-full mt-2 px-4 py-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-white focus:outline-none focus:border-indigo-500"
+              className="w-full mt-2 px-4 py-2.5 rounded-xl bg-[#131926] border border-[#1e2638] text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
             />
           )}
         </div>
@@ -205,7 +205,7 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Brief overview of the book's topics and target audience..."
-            className="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-800 text-sm text-white focus:outline-none focus:border-indigo-500 resize-none"
+            className="w-full px-4 py-3 rounded-xl bg-[#131926] border border-[#1e2638] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 resize-none"
           />
         </div>
 
@@ -220,7 +220,7 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
                 e.preventDefault();
                 if (e.dataTransfer.files[0]) handleCoverSelect(e.dataTransfer.files[0]);
               }}
-              className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-slate-800 hover:border-indigo-500/50 rounded-2xl bg-slate-900/40 hover:bg-slate-900/70 transition-all cursor-pointer group"
+              className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-[#1e2638] hover:border-blue-500/50 rounded-2xl bg-[#131926]/50 hover:bg-[#131926] transition-all cursor-pointer group"
             >
               <input
                 type="file"
@@ -228,7 +228,7 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
                 onChange={(e) => e.target.files?.[0] && handleCoverSelect(e.target.files[0])}
                 className="hidden"
               />
-              <ImageIcon className="w-8 h-8 text-slate-500 group-hover:text-indigo-400 transition-colors mb-2" />
+              <ImageIcon className="w-8 h-8 text-slate-500 group-hover:text-blue-400 transition-colors mb-2" />
               <p className="text-xs font-semibold text-slate-300 text-center">
                 {coverFile ? coverFile.name : 'Drag & drop cover or click to browse'}
               </p>
@@ -247,8 +247,8 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
               }}
               className={`flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-2xl transition-all cursor-pointer group ${
                 pdfFile
-                  ? 'border-emerald-500/50 bg-emerald-950/10'
-                  : 'border-slate-800 hover:border-indigo-500/50 bg-slate-900/40 hover:bg-slate-900/70'
+                  ? 'border-emerald-500/50 bg-emerald-950/20'
+                  : 'border-[#1e2638] hover:border-blue-500/50 bg-[#131926]/50 hover:bg-[#131926]'
               }`}
             >
               <input
@@ -259,7 +259,7 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
               />
               <FileText
                 className={`w-8 h-8 mb-2 transition-colors ${
-                  pdfFile ? 'text-emerald-400' : 'text-slate-500 group-hover:text-indigo-400'
+                  pdfFile ? 'text-emerald-400' : 'text-slate-500 group-hover:text-blue-400'
                 }`}
               />
               <p className="text-xs font-semibold text-slate-300 text-center truncate max-w-[200px]">
@@ -275,7 +275,7 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
         <button
           type="submit"
           disabled={uploading}
-          className="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-bold text-sm shadow-glow-md hover:shadow-glow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+          className="w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50"
         >
           {uploading ? (
             <>
@@ -294,12 +294,12 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
       {/* Right 4 cols: Instant Live Card Preview */}
       <div className="lg:col-span-4 sticky top-24 space-y-3">
         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400">
-          <Sparkles className="w-4 h-4 text-indigo-400" />
+          <Sparkles className="w-4 h-4 text-blue-400" />
           <span>Live Catalog Preview</span>
         </div>
 
-        <div className="w-full max-w-[260px] mx-auto rounded-2xl glass-panel p-3 border border-slate-800 shadow-xl">
-          <div className="aspect-[3/4] w-full rounded-xl overflow-hidden bg-slate-900 relative">
+        <div className="w-full max-w-[260px] mx-auto rounded-2xl bg-[#131926] p-3 border border-[#1e2638] shadow-xl">
+          <div className="aspect-[3/4] w-full rounded-xl overflow-hidden bg-[#0e131f] relative">
             {coverPreview ? (
               <img src={coverPreview} alt="Preview" className="w-full h-full object-cover" />
             ) : (
@@ -308,7 +308,7 @@ export function UploadDropzone({ onSuccess }: UploadDropzoneProps) {
                 <span className="text-xs font-semibold">Cover preview will show here</span>
               </div>
             )}
-            <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-slate-950/80 border border-slate-700 text-[10px] font-bold text-indigo-300">
+            <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-[#0e131f]/90 border border-[#1e2638] text-[10px] font-bold text-blue-300">
               {category === 'Other' && customCategory ? customCategory : category}
             </div>
           </div>

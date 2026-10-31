@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/db';
 import { Book } from '@/lib/models/Book';
 
+export const dynamic = 'force-dynamic';
+
 interface RouteContext {
   params: {
     id: string;

@@ -12,26 +12,24 @@ const config: Config = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        navy: {
+          950: '#0c1017',
+          900: '#0e131f',
+          850: '#131926',
+          800: '#161e2e',
+          700: '#1e2638',
+          600: '#28334a',
+          500: '#3e4d6e',
+        },
       },
       boxShadow: {
-        'glow-sm': '0 0 15px -3px rgba(99, 102, 241, 0.25)',
-        'glow-md': '0 0 25px -4px rgba(99, 102, 241, 0.35)',
-        'glow-lg': '0 0 35px -5px rgba(99, 102, 241, 0.45)',
-        'glow-emerald': '0 0 25px -4px rgba(16, 185, 129, 0.35)',
+        'glow-sm': '0 0 15px -3px rgba(59, 130, 246, 0.25)',
+        'glow-md': '0 0 25px -4px rgba(59, 130, 246, 0.35)',
+        'glow-lg': '0 0 35px -5px rgba(59, 130, 246, 0.45)',
+        'book-spine': 'inset 0 0 30px rgba(0, 0, 0, 0.15), 0 15px 35px rgba(0, 0, 0, 0.4)',
       },
-      animation: {
-        'fade-in': 'fadeIn 0.3s ease-in-out',
-        'pulse-subtle': 'pulseSubtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(6px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        pulseSubtle: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.6' },
-        },
+      fontFamily: {
+        book: ['Georgia', 'Cambria', 'serif'],
       },
     },
   },
@@ -39,4 +37,3 @@ const config: Config = {
 };
 
 export default config;
-

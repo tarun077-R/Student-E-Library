@@ -46,9 +46,9 @@ export default function AdminPage() {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       {/* Admin Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-8 border-b border-slate-800/80 gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-8 border-b border-[#1e2638] gap-4 mb-8">
         <div>
-          <div className="flex items-center gap-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">
             <ShieldAlert className="w-4 h-4" /> Administrative Suite
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
@@ -60,12 +60,12 @@ export default function AdminPage() {
         </div>
 
         {/* Tab Controls */}
-        <div className="flex items-center gap-2 bg-slate-900/80 border border-slate-800 p-1.5 rounded-2xl w-full sm:w-auto">
+        <div className="flex items-center gap-2 bg-[#131926] border border-[#1e2638] p-1.5 rounded-2xl w-full sm:w-auto">
           <button
             onClick={() => setActiveTab('manage')}
             className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
               activeTab === 'manage'
-                ? 'bg-indigo-600 text-white shadow-sm'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -77,7 +77,7 @@ export default function AdminPage() {
             onClick={() => setActiveTab('add')}
             className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
               activeTab === 'add'
-                ? 'bg-indigo-600 text-white shadow-sm'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -90,7 +90,7 @@ export default function AdminPage() {
       {/* Main Body */}
       {loading ? (
         <div className="py-24 flex flex-col items-center justify-center gap-3">
-          <Loader2 className="w-8 h-8 animate-spin text-indigo-400" />
+          <Loader2 className="w-8 h-8 animate-spin text-blue-400" />
           <p className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
             Loading Administrative Analytics...
           </p>
@@ -108,7 +108,7 @@ export default function AdminPage() {
         </div>
       ) : (
         <div className="space-y-6">
-          <div className="border-b border-slate-800 pb-3">
+          <div className="border-b border-[#1e2638] pb-3">
             <h2 className="text-lg font-bold text-white tracking-tight">Publish New Title</h2>
             <p className="text-xs text-slate-400">
               Drag-and-drop cover image and PDF document with live visual preview
