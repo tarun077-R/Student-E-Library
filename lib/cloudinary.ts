@@ -19,6 +19,12 @@ export async function uploadBufferToCloudinary(
   resourceType: 'image' | 'raw' = 'image',
   format?: string
 ): Promise<CloudinaryUploadResult> {
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
+
   return new Promise((resolve, reject) => {
     const options: UploadApiOptions = {
       folder,
