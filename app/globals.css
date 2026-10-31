@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0e131f;
+  --foreground: #f1f5f9;
+  --card-bg: #131926;
+  --card-border: #1e2638;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232d42;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+/* Glass & Card Panels matching screenshot */
+.glass-panel {
+  background-color: rgba(19, 25, 38, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid #1e2638;
+}
+
+.glass-panel:hover {
+  border-color: #2a3750;
+}
+
+.navy-card {
+  background-color: #131926;
+  border: 1px solid #1e2638;
+}
+
+.navy-card:hover {
+  border-color: #2a3750;
+}
+
+/* Book page realistic texture */
+.book-paper {
+  background: #fbf9f4;
+  color: #1c1815;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+.book-spine-crease {
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.03) 48%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.03) 52%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+}
+
+/* Glow gradient bar */
+.chart-bar-glow {
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+}
