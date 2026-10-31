@@ -267,3 +267,4 @@ export function KanbanBoard({ shelf, onRefresh }: KanbanBoardProps) {
     </>
   );
 }
+

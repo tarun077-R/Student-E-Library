@@ -5,6 +5,8 @@ import { BookCard } from '@/components/book-card';
 import { BookOpen, Sparkles, Bookmark, Layers, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
 import { IBook } from '@/types';
 
+export const dynamic = 'force-dynamic';
+
 async function getFeaturedBooks(): Promise<IBook[]> {
   try {
     await connectToDatabase();
@@ -167,3 +169,4 @@ export default async function HomePage() {
     </div>
   );
 }
+

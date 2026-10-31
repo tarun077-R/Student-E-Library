@@ -62,3 +62,4 @@ export const Book: Model<IBookDocument> =
   mongoose.models.Book || mongoose.model<IBookDocument>('Book', BookSchema);
 
 export default Book;
+

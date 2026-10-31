@@ -173,3 +173,4 @@ export function PDFReaderViewer({ book, initialPage = 1 }: PDFReaderViewerProps)
     </div>
   );
 }
+

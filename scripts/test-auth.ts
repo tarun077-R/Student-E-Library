@@ -46,3 +46,4 @@ testAuth().catch((err) => {
   console.error('Auth verification failed:', err);
   process.exit(1);
 });
+

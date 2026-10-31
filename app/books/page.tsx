@@ -103,3 +103,4 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
     </div>
   );
 }
+

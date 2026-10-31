@@ -53,3 +53,4 @@ export default async function ReaderPage({ params }: ReaderPageProps) {
 
   return <PDFReaderViewer book={book} initialPage={initialPage} />;
 }
+

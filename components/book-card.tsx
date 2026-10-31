@@ -127,3 +127,4 @@ export function BookCard({ book, isInitiallySaved = false }: BookCardProps) {
     </div>
   );
 }
+
