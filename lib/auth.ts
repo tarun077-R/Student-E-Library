@@ -2,10 +2,12 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { AuthUser } from '@/types';
 
-const JWT_SECRET = process.env.JWT_SECRET;
-
-if (!JWT_SECRET) {
-  throw new Error('Please define the JWT_SECRET environment variable in .env.local');
+function getJwtSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('Please define the JWT_SECRET environment variable in .env.local');
+  }
+  return secret;
 }
 
 export async function hashPassword(password: string): Promise<string> {
@@ -25,14 +27,14 @@ export function signToken(user: { _id: string; email: string; name: string; role
     role: user.role,
   };
 
-  return jwt.sign(payload, JWT_SECRET as string, {
+  return jwt.sign(payload, getJwtSecret(), {
     expiresIn: '7d',
   });
 }
 
 export function verifyToken(token: string): AuthUser | null {
   try {
-    const decoded = jwt.verify(token, JWT_SECRET as string) as AuthUser;
+    const decoded = jwt.verify(token, getJwtSecret()) as AuthUser;
     return decoded;
   } catch {
     return null;

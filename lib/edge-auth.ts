@@ -1,11 +1,10 @@
 import { jwtVerify } from 'jose';
 import { AuthUser } from '@/types';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'default-secret-fallback-for-edge';
-
 export async function verifyEdgeToken(token: string): Promise<AuthUser | null> {
   try {
-    const encodedSecret = new TextEncoder().encode(JWT_SECRET);
+    const secret = process.env.JWT_SECRET || 'default-secret-fallback-for-edge';
+    const encodedSecret = new TextEncoder().encode(secret);
     const { payload } = await jwtVerify(token, encodedSecret);
 
     if (!payload || typeof payload !== 'object') {
